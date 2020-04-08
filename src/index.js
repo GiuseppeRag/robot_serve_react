@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {Container} from '@material-ui/core';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
+import Title from './components/Title';
+import HomeComponent from './components/HomeComponent'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Container>
+    <Title />
+    <BrowserRouter>
+      <Route path="/" component={HomeComponent}></Route>
+    </BrowserRouter>
+  </Container>,
   document.getElementById('root')
 );
 

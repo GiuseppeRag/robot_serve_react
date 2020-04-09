@@ -2,17 +2,23 @@
   "name": "robot_serve_react",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": "6.10.3",
+    "node": "12.10.0"
+  },
   "dependencies": {
     "@material-ui/core": "^4.9.9",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "jsmpeg": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-window-size": "^1.2.2",
     "say": "^0.16.0",
+    "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   },
   "scripts": {

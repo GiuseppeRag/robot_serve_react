@@ -1,10 +1,19 @@
 import React from 'react';
-import {Button} from '@material-ui/core';
+import {Button, Box} from '@material-ui/core';
 
 class TurnLeftButton extends React.Component {
+
+    onChange(action){
+        this.props.onChange(action)
+    }
+
     render() { 
         return (
-            <Button style={{width: 100, height: 100, backgroundColor: 'blue'}}>Turn Left</Button>
+            <Box border={2} borderColor="black" borderRadius={5} display="flex" justifyContent="center" alignItems="center" bgcolor="blue">
+                <Button style={{width: 100, height: 100}}
+                onMouseDown={() => this.onChange('Turn Left')}
+                onMouseUp={() => this.onChange('Idle')}>Turn Left</Button>
+            </Box>
         );
     }
 }

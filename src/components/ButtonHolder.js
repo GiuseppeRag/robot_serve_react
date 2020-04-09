@@ -9,6 +9,13 @@ class ButtonHolder extends React.Component {
     state = {
         currentAction: 'Idle'
     }
+
+    changeAction(action) {
+        this.setState({
+            currentAction: action
+        })
+    }
+
     render() {
         return (
             <Container>
@@ -16,13 +23,13 @@ class ButtonHolder extends React.Component {
                 <Grid container spacing={2}>
                     <Grid item xs={4} spacing={3} style={styles}/>
                     <Grid item xs={4} spacing={3} >
-                        <FowardButton />
+                        <FowardButton onChange={(action) => this.changeAction(action)}/>
                     </Grid>
                     <Grid item xs={4} spacing={3} style={styles}/>
                 </Grid>
                 <Grid container spacing={2}>
                     <Grid item xs={4} spacing={3}>
-                        <TurnLeftButton />
+                        <TurnLeftButton onChange={(action) => this.changeAction(action)}/>
                     </Grid>
                     <Grid item xs={4} spacing={3}>
                         <Box justifyContent="center" textAlign="center" style={styles}>
@@ -30,13 +37,13 @@ class ButtonHolder extends React.Component {
                         </Box>
                     </Grid>
                     <Grid item xs={4} spacing={3}>
-                        <TurnRightButton />
+                        <TurnRightButton onChange={(action) => this.changeAction(action)}/>
                     </Grid>
                 </Grid>
                 <Grid container spacing={2}>
                     <Grid item xs={4} spacing={3} style={styles}/>
                     <Grid item xs={4} spacing={3}>
-                        <BackButton />
+                        <BackButton onChange={(action) => this.changeAction(action)}/>
                     </Grid>
                     <Grid item xs={4} spacing={3} style={styles}/>
                 </Grid>

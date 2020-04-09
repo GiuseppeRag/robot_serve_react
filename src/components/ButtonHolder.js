@@ -6,14 +6,20 @@ import TurnRightButton from './TurnRightButton';
 import BackButton from './BackButton';
 
 class ButtonHolder extends React.Component {
+    constructor(props){
+        super(props);
+        this.handleCommand=this.handleCommand.bind(this);
+    }
+    
     state = {
-        currentAction: 'Idle'
+        currentAction: 'Stop'
     }
 
-    changeAction(action) {
+    handleCommand(action) {
         this.setState({
             currentAction: action
         })
+        this.props.handleCommand(action)
     }
 
     render() {
@@ -23,13 +29,13 @@ class ButtonHolder extends React.Component {
                 <Grid container spacing={2}>
                     <Grid item xs={4} spacing={3} style={styles}/>
                     <Grid item xs={4} spacing={3} >
-                        <FowardButton onChange={(action) => this.changeAction(action)}/>
+                        <FowardButton handleCommand={(drive) => this.handleCommand(drive)}/>
                     </Grid>
                     <Grid item xs={4} spacing={3} style={styles}/>
                 </Grid>
                 <Grid container spacing={2}>
                     <Grid item xs={4} spacing={3}>
-                        <TurnLeftButton onChange={(action) => this.changeAction(action)}/>
+                        <TurnLeftButton handleCommand={(drive) => this.handleCommand(drive)}/>
                     </Grid>
                     <Grid item xs={4} spacing={3}>
                         <Box justifyContent="center" textAlign="center" style={styles}>
@@ -37,13 +43,13 @@ class ButtonHolder extends React.Component {
                         </Box>
                     </Grid>
                     <Grid item xs={4} spacing={3}>
-                        <TurnRightButton onChange={(action) => this.changeAction(action)}/>
+                        <TurnRightButton handleCommand={(drive) => this.handleCommand(drive)}/>
                     </Grid>
                 </Grid>
                 <Grid container spacing={2}>
                     <Grid item xs={4} spacing={3} style={styles}/>
                     <Grid item xs={4} spacing={3}>
-                        <BackButton onChange={(action) => this.changeAction(action)}/>
+                        <BackButton handleCommand={(drive) => this.handleCommand(drive)}/>
                     </Grid>
                     <Grid item xs={4} spacing={3} style={styles}/>
                 </Grid>

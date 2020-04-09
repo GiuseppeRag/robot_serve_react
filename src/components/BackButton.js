@@ -5,6 +5,7 @@ class BackButton extends React.Component {
 
     onChange(action) {
         this.props.onChange(action)
+        
     }
 
     render() { 

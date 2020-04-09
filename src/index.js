@@ -17,8 +17,8 @@ ReactDOM.render(
   <Container>
     <Title />
     <BrowserRouter>
-      <Route path="/" component={HomeComponent} exact></Route>
-      <Route path="/login" component={LoginComponent} exact></Route>
+      <Route path="/" component={LoginComponent} exact></Route>
+      <Route path="/home" component={HomeComponent} exact></Route>
       <Route path="/logs" component={LogsComponent} exact></Route>
       <Route path="/users" component={UsersComponent} exact></Route>
       <Route path="/edituser/:id" component={EditUserComponent} exact></Route>

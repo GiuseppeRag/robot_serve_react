@@ -29,10 +29,13 @@ class UsersComponent extends React.Component {
                 </Link>
             </Box>
             <Box display="flex" justifyContent="center" alignItems="center">
-                <Link to="/logs" style={{ textDecoration: 'none' }}>
-                    <Button variant="contained" style={{width: 620, height: 50}}>Logs</Button>
+                <Link to="/home" style={{ textDecoration: 'none' }}>
+                    <Button variant="contained" style={{width: 410, height: 50}}>Home</Button>
                 </Link>
-                <Button variant="contained" style={{width: 620, height: 50}} disabled>Users</Button>
+                <Link to="/logs" style={{ textDecoration: 'none' }}>
+                    <Button variant="contained" style={{width: 410, height: 50}}>Logs</Button>
+                </Link>
+                <Button variant="contained" style={{width: 410, height: 50}} disabled>Users</Button>
             </Box>
             <TableView headerArray={this.state.headerArray} contentArray={this.state.contentArray} allowEdit={true}/>
         </Box>

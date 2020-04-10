@@ -13,7 +13,11 @@ class UsersComponent extends React.Component {
                 {id: 2, username: 'Gragusa69', firstname: 'Giuseppe', lastname: 'Ragusa', password: 'pass2'},
                 {id: 3, username: 'ABC-obb', firstname: 'Andrew', lastname: 'Cobb', password: 'pass3'},
                 {id: 4, username: '4rsalan', firstname: 'Arsalan', lastname: 'Farooqui', password: 'pass4'},
-            ]
+            ],
+            ignore: {
+                header: 'Password',
+                item: 'password'
+            }
         }
     }
 
@@ -37,7 +41,7 @@ class UsersComponent extends React.Component {
                 </Link>
                 <Button variant="contained" style={{width: 410, height: 50}} disabled>Users</Button>
             </Box>
-            <TableView headerArray={this.state.headerArray} contentArray={this.state.contentArray} allowEdit={true}/>
+            <TableView headerArray={this.state.headerArray} contentArray={this.state.contentArray} allowEdit={true} ignoreObject={this.state.ignore}/>
         </Box>
         );
     }

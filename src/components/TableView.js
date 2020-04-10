@@ -7,12 +7,29 @@ class TableView extends React.Component {
         super(props)
         this.state = {
             headerArray: this.props.headerArray,
-            contentArray: this.props.contentArray
+            contentArray: this.props.contentArray,
         }
     }
 
+    filterRecord(record) {
+        const ignoreItem = this.props.ignoreObject.item
+        let newObject = {}
+        for (let key in record){
+            if (key != ignoreItem){
+                newObject[key] = record[key]
+            }
+        }
+        return newObject
+    }
+
+    filterHeaders() {
+        let {headerArray} = this.props
+        const ignoreHeader = this.props.ignoreObject.header
+        return headerArray.filter(header => header != ignoreHeader)
+    }
+
     renderHeaders(){
-        const {headerArray} = this.state
+        const headerArray = this.filterHeaders()
         let headers = []
         headerArray.map(header => {
             headers.push(<TableCell style={{textAlign: "center", backgroundColor: "black", color: "white", fontSize: 24}}>{header}</TableCell>)
@@ -40,9 +57,10 @@ class TableView extends React.Component {
     }
 
     renderRow(record, colour) {
+        let filteredRecord = this.filterRecord(record)
         let itemArray = []
-        for (let key in record){
-            itemArray.push(<TableCell style={{textAlign: "center", backgroundColor: colour, fontSize: 18}}>{record[key]}</TableCell>)
+        for (let key in filteredRecord){
+            itemArray.push(<TableCell style={{textAlign: "center", backgroundColor: colour, fontSize: 18}}>{filteredRecord[key]}</TableCell>)
         }
         if (this.props.allowEdit == true){
             let url = '/edituser/' + record.id

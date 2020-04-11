@@ -59,7 +59,20 @@ class EditUserComponent extends React.Component {
     }
 
     onDelete() {
-        this.props.history.push('/users')
+        const user = {
+            id : this.state.id,
+            username : this.state.username,
+            fname : this.state.firstname,
+            lname : this.state.lastname,
+            password : this.state.password
+        }
+        if (user.username !== "root"){
+        axios.post("https://robotserve.herokuapp.com/api/deluser", null, {params : user})
+            .then( res => {
+                    console.log(res)
+                    this.props.history.push('/users')
+            })
+        }
     }
 
     render() { 

@@ -1,12 +1,16 @@
 import React from 'react';
 import {Box, Button} from '@material-ui/core'
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import UserInfoForm from './UserInfoForm'
+import  axios from 'axios'
+
 
 class EditUserComponent extends React.Component {
     constructor(props) {
         super(props)
+        console.log("user props", props.location.user)
         this.state = {
+            id : props.location.user._id,
             username: props.location.user.username,
             firstname: props.location.user.firstname,
             lastname: props.location.user.lastname,
@@ -39,7 +43,18 @@ class EditUserComponent extends React.Component {
     }
 
     onSave() {
-        this.props.history.push('/users')
+        const user = {
+            id : this.state.id,
+            username : this.state.username,
+            fname : this.state.firstname,
+            lanme : this.state.lastname,
+            password : this.state.password
+        }
+        console.log("saving user : ", user)
+        axios.post("https://robotserve.herokuapp.com/api/updateuser", null, {params : user})
+            .then( res => {
+                    this.props.history.push('/users')
+            })
     }
 
     onDelete() {

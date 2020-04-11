@@ -9,10 +9,10 @@ class UsersComponent extends React.Component {
         this.state = {
             headerArray: ['Id', 'Username', 'First Name', 'Last Name', 'Password', ''],
             contentArray: [
-                {id: 1, username: 'JohnDoe82', firstname: 'John', lastname: 'Doe', password: 'pass1'},
-                {id: 2, username: 'Gragusa69', firstname: 'Giuseppe', lastname: 'Ragusa', password: 'pass2'},
-                {id: 3, username: 'ABCobb', firstname: 'Andrew', lastname: 'Cobb', password: 'pass3'},
-                {id: 4, username: '4rsalan', firstname: 'Arsalan', lastname: 'Farooqui', password: 'pass4'},
+                {_id: 1, username: 'JohnDoe82', firstname: 'John', lastname: 'Doe', password: 'pass1'},
+                {_id: 2, username: 'Gragusa69', firstname: 'Giuseppe', lastname: 'Ragusa', password: 'pass2'},
+                {_id: 3, username: 'ABCobb', firstname: 'Andrew', lastname: 'Cobb', password: 'pass3'},
+                {_id: 4, username: '4rsalan', firstname: 'Arsalan', lastname: 'Farooqui', password: 'pass4'},
             ],
             ignore: {
                 header: 'Password',

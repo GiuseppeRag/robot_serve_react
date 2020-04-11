@@ -21,7 +21,8 @@ class Video extends React.Component {
   
     render() { 
         return (
-                <canvas ref={this.streamCanvas} id="streamCanvas" width ="640" height="480"></canvas>
+            <iframe src="https://picamserver.herokuapp.com/"></iframe>
+                //<canvas ref={this.streamCanvas} id="streamCanvas" width ="640" height="480"></canvas>
         );
     }
 }

@@ -37,7 +37,7 @@ class LogsComponent extends React.Component {
     componentDidMount(){
         axios.get('https://robotserve.herokuapp.com/api/logs')
             .then( res => {
-                console.log(res)
+                console.log("log list",res)
                 this.setState({contentArray : res})
             }).catch( err => {
                 console.log(err)

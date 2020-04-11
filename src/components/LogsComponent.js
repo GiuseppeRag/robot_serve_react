@@ -2,12 +2,16 @@ import React from 'react';
 import {Box, Button, Table} from '@material-ui/core'
 import {Link} from 'react-router-dom'
 import TableView from './TableView'
+import axios from 'axios'
+
 
 class LogsComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             headerArray: ['Id', 'Source', 'Username', 'Data', "Timestamp"],
+            contentArray : [],
+            /*
             contentArray: [
                 {id: 1, source: 'iOS', username: 'Ben', data: 'foward', timestamp: Date.now()},
                 {id: 2, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 1000},
@@ -20,12 +24,26 @@ class LogsComponent extends React.Component {
                 {id: 9, source: 'iOS', username: 'Ben', data: 'backwards', timestamp: Date.now() + 8000},
                 {id: 10, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 9000}
             ],
+            */
             ignore: {
                 header: "Id",
-                item: "id"
+                item: "_id",
+                item: "__v"
             }
         }
+
     }
+
+    componentDidMount(){
+        axios.get('https://robotserve.herokuapp.com/api/logs')
+            .then( res => {
+                console.log(res)
+                this.setState({contentArray : res})
+            }).catch( err => {
+                console.log(err)
+            });
+    }
+
     render() { 
         return (
             <Box display="flex" flexDirection="column">

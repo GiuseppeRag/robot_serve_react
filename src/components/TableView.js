@@ -15,7 +15,7 @@ class TableView extends React.Component {
         const ignoreItem = this.props.ignoreObject.item
         let newObject = {}
         for (let key in record){
-            if (key != ignoreItem){
+            if (! ignoreItem.includes(key)){
                 newObject[key] = record[key]
             }
         }
@@ -25,7 +25,7 @@ class TableView extends React.Component {
     filterHeaders() {
         let {headerArray} = this.props
         const ignoreHeader = this.props.ignoreObject.header
-        return headerArray.filter(header => header != ignoreHeader)
+        return headerArray.filter(header =>  ! ignoreHeader.includes(header))
     }
 
     renderHeaders(){

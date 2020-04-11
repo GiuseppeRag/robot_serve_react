@@ -16,8 +16,9 @@ class UsersComponent extends React.Component {
                 {_id: 4, username: '4rsalan', firstname: 'Arsalan', lastname: 'Farooqui', password: 'pass4'},
             ],
             ignore: {
-                header: 'Password',
-                item: 'password'
+                header: ['Password', 'Id', "_v"],
+                item: ['password', "_id", "__v"]
+
             },
             isLoading: true
         }

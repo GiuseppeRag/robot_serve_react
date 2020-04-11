@@ -26,6 +26,8 @@ class LogsComponent extends React.Component {
             ignore: {
                 header: "Id",
                 item: "_id",
+                header: "_v",
+                item: "__v"
             },
             isLoading : true
         }

@@ -12,8 +12,8 @@ class EditUserComponent extends React.Component {
         this.state = {
             id : props.location.user._id,
             username: props.location.user.username,
-            firstname: props.location.user.firstname,
-            lastname: props.location.user.lastname,
+            firstname: props.location.user.fname,
+            lastname: props.location.user.lname,
             password: props.location.user.password
         }
     }
@@ -47,12 +47,13 @@ class EditUserComponent extends React.Component {
             id : this.state.id,
             username : this.state.username,
             fname : this.state.firstname,
-            lanme : this.state.lastname,
+            lname : this.state.lastname,
             password : this.state.password
         }
         console.log("saving user : ", user)
         axios.post("https://robotserve.herokuapp.com/api/updateuser", null, {params : user})
             .then( res => {
+                    console.log(res)
                     this.props.history.push('/users')
             })
     }

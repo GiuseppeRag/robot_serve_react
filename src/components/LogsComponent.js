@@ -10,35 +10,38 @@ class LogsComponent extends React.Component {
         super(props)
         this.state = {
             headerArray: ['Id', 'Source', 'Username', 'Data', "Timestamp"],
-            contentArray : [],
-            /*
             contentArray: [
-                {id: 1, source: 'iOS', username: 'Ben', data: 'foward', timestamp: Date.now()},
-                {id: 2, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 1000},
-                {id: 3, source: 'iOS', username: 'Ben', data: 'turn left', timestamp: Date.now() + 2000},
-                {id: 4, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 3000},
-                {id: 5, source: 'iOS', username: 'Ben', data: 'foward', timestamp: Date.now() + 4000},
-                {id: 6, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 5000},
-                {id: 7, source: 'iOS', username: 'Ben', data: 'turn left', timestamp: Date.now() + 6000},
-                {id: 8, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 7000},
-                {id: 9, source: 'iOS', username: 'Ben', data: 'backwards', timestamp: Date.now() + 8000},
-                {id: 10, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 9000}
+                {_id: 1, source: 'iOS', username: 'Ben', data: 'foward', timestamp: Date.now()},
+                {_id: 2, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 1000},
+                {_id: 3, source: 'iOS', username: 'Ben', data: 'turn left', timestamp: Date.now() + 2000},
+                {_id: 4, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 3000},
+                {_id: 5, source: 'iOS', username: 'Ben', data: 'foward', timestamp: Date.now() + 4000},
+                {_id: 6, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 5000},
+                {_id: 7, source: 'iOS', username: 'Ben', data: 'turn left', timestamp: Date.now() + 6000},
+                {_id: 8, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 7000},
+                {_id: 9, source: 'iOS', username: 'Ben', data: 'backwards', timestamp: Date.now() + 8000},
+                {_id: 10, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 9000}
             ],
-            */
+            //*/
             ignore: {
                 header: "Id",
                 item: "_id",
-                item: "__v"
-            }
+            },
+            isLoading : true
         }
 
     }
 
     componentDidMount(){
-        axios.get('https://robotserve.herokuapp.com/api/logs')
-            .then( res => {
-                console.log("log list",res)
-                this.setState({contentArray : res})
+        axios({
+            method : "get",
+            url :'https://robotserve.herokuapp.com/api/logs',
+            crossDomain:true
+        }).then( res => {
+                const logs = res.data;
+                console.log("log list",logs)
+                this.setState({contentArray : res.logs})
+                this.setState({isLoading : false})
             }).catch( err => {
                 console.log(err)
             });

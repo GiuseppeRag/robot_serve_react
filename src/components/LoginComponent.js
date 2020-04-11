@@ -28,7 +28,7 @@ class LoginComponent extends React.Component {
     }
 
     onSubmit(username, password) {
-        axios.post("https://robotserve.herokuapp.com/api/login", none, {params : {username : username, password : password}})
+        axios.post("https://robotserve.herokuapp.com/api/login", null, {params : {username : username, password : password}})
             .then( res => {
                 if (res.data.login){
                     this.props.history.push('/home')

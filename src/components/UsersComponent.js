@@ -11,7 +11,7 @@ class UsersComponent extends React.Component {
             contentArray: [
                 {id: 1, username: 'JohnDoe82', firstname: 'John', lastname: 'Doe', password: 'pass1'},
                 {id: 2, username: 'Gragusa69', firstname: 'Giuseppe', lastname: 'Ragusa', password: 'pass2'},
-                {id: 3, username: 'ABC-obb', firstname: 'Andrew', lastname: 'Cobb', password: 'pass3'},
+                {id: 3, username: 'ABCobb', firstname: 'Andrew', lastname: 'Cobb', password: 'pass3'},
                 {id: 4, username: '4rsalan', firstname: 'Arsalan', lastname: 'Farooqui', password: 'pass4'},
             ],
             ignore: {

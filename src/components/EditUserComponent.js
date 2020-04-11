@@ -83,7 +83,7 @@ class EditUserComponent extends React.Component {
                     changeUsername={(newValue) => this.changeUsername(newValue)} username={this.state.username}
                     changeFirstName={(newValue) => this.changeFirstName(newValue)} firstname={this.state.firstname}
                     changeLastName={(newValue) => this.changeLastName(newValue)} lastname={this.state.lastname}
-                    changePassword={(newValue) => this.changeLastName(newValue)} password={this.state.password}/>
+                    changePassword={(newValue) => this.changePassword(newValue)} password={this.state.password}/>
                 <Box display="flex" justifyContent="center" alignItems="center">
                     <Link to="/users" style={{ textDecoration: 'none' }}>
                         <Button variant="contained" style={{margin: 40, marginBottom: 0}}>Cancel</Button>

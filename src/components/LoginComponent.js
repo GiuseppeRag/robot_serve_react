@@ -8,8 +8,8 @@ class LoginComponent extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            username: "User123",
-            password: "Pass123"
+            msg: "",
+            
         }
     }
 
@@ -33,6 +33,7 @@ class LoginComponent extends React.Component {
                 if (res.data.login){
                     this.props.history.push('/home')
                 } else {
+                    this.setState({msg: "Ivalid Username or Password"})
                     console.log('Login Failed')
                 }
             })
@@ -53,7 +54,7 @@ class LoginComponent extends React.Component {
                     <Box display="flex" justifyContent="center" alignItems="center">
                     <FormControl>
                         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                            <p>Login As Admin:</p>
+                            <p>Login:</p>
                             <TextField 
                                 style={{width: 300, margin: 15}}
                                 inputProps={{style: {textAlign: "center"}}}
@@ -71,6 +72,7 @@ class LoginComponent extends React.Component {
                                 defaultValue={this.state.password} 
                                 value={this.state.password} 
                                 onChange={(event) => this.changePassword(event)} />
+                                <p>{this.state.msg}</p>
                             <Box display="flex" justifyContent="center" alignItems="center">
                                 <Button label="Login" primary={true} style={{marginTop: 40}} onClick={() => this.onSubmit(this.state.username, this.state.password)}>Login</Button>
                             </Box>

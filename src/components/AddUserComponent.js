@@ -2,6 +2,7 @@ import React from 'react';
 import {Box, Button} from '@material-ui/core';
 import {Link} from 'react-router-dom'
 import UserInfoForm from './UserInfoForm';
+import axios from "axios";
 
 class AddUserComponent extends React.Component {
     constructor(props) {
@@ -39,7 +40,20 @@ class AddUserComponent extends React.Component {
     }
 
     onAdd() {
-        this.props.history.push('/users')
+        const user = {
+            id : this.state.id,
+            username : this.state.username,
+            fname : this.state.firstname,
+            lname : this.state.lastname,
+            password : this.state.password
+        }
+        if (user.username !== "root"){
+            axios.post("https://robotserve.herokuapp.com/api/adduser", null, {params : user})
+                .then( res => {
+                    console.log(res);
+                    this.props.history.push('/users')
+                })
+        }
     }
 
     render() { 

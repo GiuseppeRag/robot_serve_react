@@ -9,7 +9,7 @@ class LogsComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            headerArray: ['Id', 'Source', 'Username', 'Data', "Timestamp"],
+            headerArray: ['Id', 'Source', 'Username', 'Data', "Created At", "Updated At", "_v"],
             contentArray: [
                 {_id: 1, source: 'iOS', username: 'Ben', data: 'foward', timestamp: Date.now()},
                 {_id: 2, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 1000},
@@ -39,34 +39,44 @@ class LogsComponent extends React.Component {
             crossDomain:true
         }).then( res => {
                 const logs = res.data;
-                console.log("log list",logs)
-                this.setState({contentArray : res.logs})
-                this.setState({isLoading : false})
+                this.setState({
+                    contentArray: logs,
+                    isLoading: false
+                });
             }).catch( err => {
                 console.log(err)
             });
     }
 
-    render() { 
-        return (
-            <Box display="flex" flexDirection="column">
-                <Box display="flex" flexDirection="row-reverse">
-                    <Link to="/" style={{ textDecoration: 'none' }}>
-                        <Button variant="contained" style={{marginBottom: 20}}>Logout</Button>
-                    </Link>
+    render() {
+        const {isLoading, contentArray} = this.state;
+        console.log("log list",this.state.contentArray);
+
+        if (isLoading){
+            return(<p>Loading...</p>)
+        }
+        else{
+            return (
+                <Box display="flex" flexDirection="column">
+                    <Box display="flex" flexDirection="row-reverse">
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            <Button variant="contained" style={{marginBottom: 20}}>Logout</Button>
+                        </Link>
+                    </Box>
+                    <Box display="flex" justifyContent="center" alignItems="center">
+                        <Link to="/home" style={{ textDecoration: 'none' }}>
+                            <Button variant="contained" style={{width: 410, height: 50}}>Home</Button>
+                        </Link>
+                        <Button variant="contained" style={{width: 410, height: 50}} disabled>Logs</Button>
+                        <Link to="/users" style={{ textDecoration: 'none' }}>
+                            <Button variant="contained" style={{width: 410, height: 50}}>Users</Button>
+                        </Link>
+                    </Box>
+                    <TableView headerArray={this.state.headerArray} contentArray={this.state.contentArray} allowEdit={false} ignoreObject={this.state.ignore}/>
                 </Box>
-                <Box display="flex" justifyContent="center" alignItems="center">
-                    <Link to="/home" style={{ textDecoration: 'none' }}>
-                        <Button variant="contained" style={{width: 410, height: 50}}>Home</Button>
-                    </Link>
-                    <Button variant="contained" style={{width: 410, height: 50}} disabled>Logs</Button>
-                    <Link to="/users" style={{ textDecoration: 'none' }}>
-                        <Button variant="contained" style={{width: 410, height: 50}}>Users</Button>
-                    </Link>
-                </Box>
-                <TableView headerArray={this.state.headerArray} contentArray={this.state.contentArray} allowEdit={false} ignoreObject={this.state.ignore}/>
-            </Box>
-        );
+            );
+        }
+
     }
 }
  

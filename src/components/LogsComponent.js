@@ -7,19 +7,23 @@ class LogsComponent extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            headerArray: ['Source', 'Username', 'Data', "Timestamp"],
+            headerArray: ['Id', 'Source', 'Username', 'Data', "Timestamp"],
             contentArray: [
-                {source: 'iOS', username: 'Ben', data: 'foward', timestamp: Date.now()},
-                {source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 1000},
-                {source: 'iOS', username: 'Ben', data: 'turn left', timestamp: Date.now() + 2000},
-                {source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 3000},
-                {source: 'iOS', username: 'Ben', data: 'foward', timestamp: Date.now() + 4000},
-                {source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 5000},
-                {source: 'iOS', username: 'Ben', data: 'turn left', timestamp: Date.now() + 6000},
-                {source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 7000},
-                {source: 'iOS', username: 'Ben', data: 'backwards', timestamp: Date.now() + 8000},
-                {source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 9000}
-            ]
+                {id: 1, source: 'iOS', username: 'Ben', data: 'foward', timestamp: Date.now()},
+                {id: 2, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 1000},
+                {id: 3, source: 'iOS', username: 'Ben', data: 'turn left', timestamp: Date.now() + 2000},
+                {id: 4, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 3000},
+                {id: 5, source: 'iOS', username: 'Ben', data: 'foward', timestamp: Date.now() + 4000},
+                {id: 6, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 5000},
+                {id: 7, source: 'iOS', username: 'Ben', data: 'turn left', timestamp: Date.now() + 6000},
+                {id: 8, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 7000},
+                {id: 9, source: 'iOS', username: 'Ben', data: 'backwards', timestamp: Date.now() + 8000},
+                {id: 10, source: 'iOS', username: 'Ben', data: 'stop', timestamp: Date.now() + 9000}
+            ],
+            ignore: {
+                header: "Id",
+                item: "id"
+            }
         }
     }
     render() { 
@@ -31,12 +35,15 @@ class LogsComponent extends React.Component {
                     </Link>
                 </Box>
                 <Box display="flex" justifyContent="center" alignItems="center">
-                    <Button variant="contained" style={{width: 620, height: 50}} disabled>Logs</Button>
+                    <Link to="/home" style={{ textDecoration: 'none' }}>
+                        <Button variant="contained" style={{width: 410, height: 50}}>Home</Button>
+                    </Link>
+                    <Button variant="contained" style={{width: 410, height: 50}} disabled>Logs</Button>
                     <Link to="/users" style={{ textDecoration: 'none' }}>
-                        <Button variant="contained" style={{width: 620, height: 50}}>Users</Button>
+                        <Button variant="contained" style={{width: 410, height: 50}}>Users</Button>
                     </Link>
                 </Box>
-                <TableView headerArray={this.state.headerArray} contentArray={this.state.contentArray} allowEdit={false}/>
+                <TableView headerArray={this.state.headerArray} contentArray={this.state.contentArray} allowEdit={false} ignoreObject={this.state.ignore}/>
             </Box>
         );
     }

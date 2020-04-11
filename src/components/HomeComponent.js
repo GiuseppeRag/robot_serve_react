@@ -23,15 +23,23 @@ class HomeComponent extends React.Component {
         socket.emit("cmd", {drive : drive, source : source, username : username})
     }
     render() { 
-        return (
-            
+        return (     
             <Box display="flex" flexDirection="column">
                 <Box display="flex" flexDirection="row-reverse">
-                    <Link to="/login" style={{ textDecoration: 'none' }}>
-                        <Button variant="contained" style={{marginBottom: 30}}>Login</Button>
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+                        <Button variant="contained" style={{marginBottom: 20}}>Logout</Button>
                     </Link>
                 </Box>
-                <Box display="flex">
+                <Box display="flex" justifyContent="center" alignItems="center">
+                    <Button variant="contained" style={{width: 410, height: 50}} disabled>Home</Button>
+                    <Link to="/logs" style={{ textDecoration: 'none' }}>
+                        <Button variant="contained" style={{width: 410, height: 50}}>Logs</Button>
+                    </Link>
+                    <Link to="/users" style={{textDecoration: 'none' }}>
+                        <Button variant="contained" style={{width: 410, height: 50}}>Users</Button>
+                    </Link>
+                </Box>
+                <Box display="flex" marginTop={4}>
                     <ButtonHolder handleCommand={this.handleCommand} />
                     <Video />
                 </Box>

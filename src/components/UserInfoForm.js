@@ -42,7 +42,8 @@ class UserInfoForm extends React.Component {
                                 style={{width: 350, margin: 20}}
                                 inputProps={{style: {textAlign: "center"}}}
                                 id="password" 
-                                label="Password" 
+                                label="Password"
+                                type="password"
                                 defaultValue={this.props.password} 
                                 value={this.props.password}
                                 onChange={(event) => this.props.changePassword(event.target.value)}/>

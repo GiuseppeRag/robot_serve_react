@@ -28,7 +28,7 @@ class LoginComponent extends React.Component {
 
     onSubmit(username, password) {
         if (username == "User123" && password == "Pass123") {
-            this.props.history.push('/logs')
+            this.props.history.push('/home')
         }
         else {
             console.log('Login Failed')
@@ -61,10 +61,7 @@ class LoginComponent extends React.Component {
                                 value={this.state.password} 
                                 onChange={(event) => this.changePassword(event)} />
                             <Box display="flex" justifyContent="center" alignItems="center">
-                                <Link to="/" style={{ textDecoration: 'none' }}>
-                                    <Button label="Back" primary={true} style={{marginTop: 40, marginRight: 25}}>Back</Button>
-                                </Link>
-                                <Button label="Login" primary={true} style={{marginTop: 40, marginLeft: 25}} onClick={() => this.onSubmit(this.state.username, this.state.password)}>Login</Button>
+                                <Button label="Login" primary={true} style={{marginTop: 40}} onClick={() => this.onSubmit(this.state.username, this.state.password)}>Login</Button>
                             </Box>
                         </Box>
                     </FormControl>

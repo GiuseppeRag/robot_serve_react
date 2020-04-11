@@ -1,6 +1,7 @@
 import React from 'react';
 import {Paper, TextField, Box, Button, FormControl} from '@material-ui/core';
-import {Link} from 'react-router-dom'
+//import {Link} from 'react-router-dom'
+import axios from 'axios'
 
 class LoginComponent extends React.Component {
 
@@ -27,12 +28,22 @@ class LoginComponent extends React.Component {
     }
 
     onSubmit(username, password) {
+        axios.post("https://robotserve.herokuapp.com/api/login", none, {params : {username : username, password : password}})
+            .then( res => {
+                if (res.data.login){
+                    this.props.history.push('/home')
+                } else {
+                    console.log('Login Failed')
+                }
+            })
+        /*
         if (username == "User123" && password == "Pass123") {
             this.props.history.push('/home')
         }
         else {
             console.log('Login Failed')
         }
+        */
     }
 
     render() { 

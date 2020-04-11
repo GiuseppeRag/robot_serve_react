@@ -73,7 +73,6 @@ class LoginComponent extends React.Component {
                                 defaultValue={this.state.password} 
                                 value={this.state.password} 
                                 onChange={(event) => this.changePassword(event)} />
-                                <p>{msg}</p>
                             <Box display="flex" justifyContent="center" alignItems="center">
                                 <Button label="Login" primary={true} style={{marginTop: 40}} onClick={() => this.onSubmit(this.state.username, this.state.password)}>Login</Button>
                             </Box>

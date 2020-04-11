@@ -54,8 +54,7 @@ class LogsComponent extends React.Component {
 
         if (isLoading){
             return(<p>Loading...</p>)
-        }
-        else{
+        } else{
             return (
                 <Box display="flex" flexDirection="column">
                     <Box display="flex" flexDirection="row-reverse">

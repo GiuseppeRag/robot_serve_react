@@ -39,7 +39,7 @@ class HomeComponent extends React.Component {
                         <Button variant="contained" style={{width: 410, height: 50}}>Users</Button>
                     </Link>
                 </Box>
-                <Box display="flex" marginTop={4}>
+                <Box display="flex" style={{width: 640, height: 480}} marginTop={4}>
                     <ButtonHolder handleCommand={this.handleCommand} />
                     <Video />
                 </Box>

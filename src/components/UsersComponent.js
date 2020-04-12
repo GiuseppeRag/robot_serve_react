@@ -25,19 +25,24 @@ class UsersComponent extends React.Component {
     }
 
     componentDidMount(){
-        axios({
-            method : "get",
-            url :'https://robotserve.herokuapp.com/api/users',
-            crossDomain:true
-        }).then( res => {
-            const logs = res.data;
-            this.setState({
-                contentArray: logs,
-                isLoading: false
+        if (this.props.authenticated != true) {
+            this.props.history.push('/')
+        }
+        else {
+            axios({
+                method : "get",
+                url :'https://robotserve.herokuapp.com/api/users',
+                crossDomain:true
+            }).then( res => {
+                const logs = res.data;
+                this.setState({
+                    contentArray: logs,
+                    isLoading: false
+                });
+            }).catch( err => {
+                console.log(err)
             });
-        }).catch( err => {
-            console.log(err)
-        });
+        }
     }
 
     render() {
@@ -51,7 +56,7 @@ class UsersComponent extends React.Component {
                 <Box display="flex" flexDirection="column">
                     <Box display="flex" flexDirection="row-reverse">
                         <Link to="/" style={{ textDecoration: 'none' }}>
-                            <Button variant="contained" style={{marginBottom: 20}}>Logout</Button>
+                            <Button variant="contained" style={{marginBottom: 20}}>Logout {this.props.user.username}</Button>
                         </Link>
                         <Link to="/adduser" style={{ textDecoration: 'none' }}>
                             <Button variant="contained" style={{marginBottom: 20, marginRight: 10}}>Add User</Button>

@@ -12,22 +12,48 @@ import EditUserComponent from './components/EditUserComponent';
 import AddUserComponent from './components/AddUserComponent'
 
 
-function App() {
-  return (
-    <div className="App">
-      <Container>
-    <Title />
-    <BrowserRouter>
-      <Route path="/" component={LoginComponent} exact></Route>
-      <Route path="/home" component={HomeComponent} exact></Route>
-      <Route path="/logs" component={LogsComponent} exact></Route>
-      <Route path="/users" component={UsersComponent} exact></Route>
-      <Route path="/edituser/:id" component={EditUserComponent} exact></Route>
-      <Route path="/adduser" component={AddUserComponent} exact></Route>
-    </BrowserRouter>
-  </Container>,
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      authenticated: false,
+      user: {}
+    }
+  }
+
+  login(user){
+    if (this.state.authenticated == false){
+      this.setState({
+        authenticated: true,
+        user: user
+      })
+    }
+  }
+
+  logout(){
+    this.setState({
+      authenticated: false,
+      user: {}
+    })
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Container>
+          <Title />
+          <BrowserRouter>
+            <Route path="/" render={(props) => <LoginComponent {...props} login={(user) => this.login(user)}/>} exact></Route>
+            <Route path="/home" render={(props) => <HomeComponent {...props} logout={() => this.logout()} user={this.state.user} authenticated={this.state.authenticated}/>} exact></Route>
+            <Route path="/logs" render={(props) => <LogsComponent {...props} logout={() => this.logout()} user={this.state.user} authenticated={this.state.authenticated}/>} exact></Route>
+            <Route path="/users" render={(props) => <UsersComponent {...props} logout={() => this.logout()} user={this.state.user} authenticated={this.state.authenticated}/>} exact></Route>
+            <Route path="/edituser/:id" render={(props) => <EditUserComponent {...props} authenticated={this.state.authenticated}/>} exact></Route>
+            <Route path="/adduser" render={(props) => <AddUserComponent {...props} authenticated={this.state.authenticated} />} exact></Route>
+          </BrowserRouter>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default App;

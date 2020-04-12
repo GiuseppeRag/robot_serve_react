@@ -13,21 +13,24 @@ class HomeComponent extends React.Component {
         this.handleCommand=this.handleCommand.bind(this);
       }
   
-
+    componentDidMount(){
+        if (this.props.authenticated != true) {
+            this.props.history.push('/')
+        }
+    }
 
     handleCommand(drive){
         console.log ("command : ", drive)
         let socket = this.state.socket;
-        let username = "anonymouse";
         let source = "React App"
-        socket.emit("cmd", {drive : drive, source : source, username : username})
+        socket.emit("cmd", {drive : drive, source : source, username : this.props.user.username})
     }
     render() { 
         return (     
             <Box display="flex" flexDirection="column">
                 <Box display="flex" flexDirection="row-reverse">
                     <Link to="/" style={{ textDecoration: 'none' }}>
-                        <Button variant="contained" style={{marginBottom: 20}}>Logout</Button>
+                        <Button variant="contained" style={{marginBottom: 20}} onClick={() => this.props.logout()}>Logout {this.props.user.username}</Button>
                     </Link>
                 </Box>
                 <Box display="flex" justifyContent="center" alignItems="center">

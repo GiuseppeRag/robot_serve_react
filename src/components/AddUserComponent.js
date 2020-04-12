@@ -11,48 +11,120 @@ class AddUserComponent extends React.Component {
             username: "",
             firstname: "",
             lastname: "",
-            password: ""
+            password: "",
+            usernameError: {
+                hasError: false,
+                message: ""
+            },
+            firstNameError: {
+                hasError: false,
+                message: ""
+            },
+            lastNameError: {
+                hasError: false,
+                message: ""
+            },
+            passwordError: {
+                hasError: false,
+                message: ""
+            }
+        }
+    }
+
+    componentDidMount() {
+        if (this.props.authenticated != true) {
+            this.props.history.push('/')
         }
     }
 
     changeUsername(newValue) {
+        let hasError
+        let message
+        if (newValue == "") {
+            hasError = true
+            message = "Username cannot be left blank"
+        }
         this.setState({
-            username: newValue
+            username: newValue,
+            usernameError: {
+                hasError: hasError,
+                message: message
+            }
         })
     }
 
     changeFirstName(newValue) {
+        let hasError
+        let message
+        if (newValue == "") {
+            hasError = true
+            message = "First Name cannot be left blank"
+        }
+        else if (!/^[a-zA-Z]+$/.test(newValue)) {
+            hasError = true
+            message = "First Name can only contain letters"
+        }
         this.setState({
-            firstname: newValue
+            firstname: newValue,
+            firstNameError: {
+                hasError: hasError,
+                message: message
+            }
         })
     }
 
     changeLastName(newValue) {
+        let hasError
+        let message
+        if (newValue == "") {
+            hasError = true
+            message = "Last Name cannot be left blank"
+        }
+        else if (!/^[a-zA-Z]+$/.test(newValue)) {
+            hasError = true
+            message = "Last Name can only contain letters"
+        }
         this.setState({
-            lastname: newValue
+            lastname: newValue,
+            lastNameError: {
+                hasError: hasError,
+                message: message
+            }
         })
     }
 
     changePassword(newValue) {
+        let hasError
+        let message
+        if (newValue == "") {
+            hasError = true
+            message = "Password cannot be left blank"
+        }
         this.setState({
-            password: newValue
+            password: newValue,
+            passwordError: {
+                hasError: hasError,
+                message: message
+            }
         })
     }
 
     onAdd() {
-        const user = {
-            id : this.state.id,
-            username : this.state.username,
-            fname : this.state.firstname,
-            lname : this.state.lastname,
-            password : this.state.password
-        }
-        if (user.username !== "root"){
-            axios.post("https://robotserve.herokuapp.com/api/adduser", null, {params : user})
-                .then( res => {
-                    console.log(res);
-                    this.props.history.push('/users')
+        if (!this.state.usernameError.hasError && !this.state.firstNameError.hasError && !this.state.lastNameError.hasError && !this.state.passwordError.hasError) {
+            const user = {
+                id : this.state.id,
+                username : this.state.username,
+                fname : this.state.firstname,
+                lname : this.state.lastname,
+                password : this.state.password
+            }
+            if (user.username !== "root"){
+                axios.post("https://robotserve.herokuapp.com/api/adduser", null, {params : user})
+                    .then( res => {
+                        console.log(res);
+                        this.props.history.push('/users')
                 })
+            }
         }
     }
 
@@ -61,10 +133,10 @@ class AddUserComponent extends React.Component {
             <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
             <UserInfoForm 
                 title="Add User" 
-                changeUsername={(newValue) => this.changeUsername(newValue)}
-                changeFirstName={(newValue) => this.changeFirstName(newValue)}
-                changeLastName={(newValue) => this.changeLastName(newValue)}
-                changePassword={(newValue) => this.changeLastName(newValue)}/>
+                changeUsername={(newValue) => this.changeUsername(newValue)} usernameError={this.state.usernameError}
+                changeFirstName={(newValue) => this.changeFirstName(newValue)} firstNameError={this.state.firstNameError}
+                changeLastName={(newValue) => this.changeLastName(newValue)} lastNameError={this.state.lastNameError}
+                changePassword={(newValue) => this.changePassword(newValue)} passwordError={this.state.passwordError}/>
             <Box display="flex" justifyContent="center" alignItems="center">
                 <Link to="/users" style={{ textDecoration: 'none' }}>
                     <Button variant="contained" style={{margin: 40, marginBottom: 0}}>Cancel</Button>

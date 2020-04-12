@@ -14,7 +14,9 @@ class UserInfoForm extends React.Component {
                     <FormControl>
                         <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                             <h4>{this.props.title}</h4>
-                            <TextField 
+                            <TextField
+                                error={this.props.usernameError.hasError}
+                                helperText={this.props.usernameError.message} 
                                 style={{width: 350, margin: 20}}
                                 inputProps={{style: {textAlign: "center"}}}
                                 id="username" 
@@ -22,7 +24,9 @@ class UserInfoForm extends React.Component {
                                 defaultValue={this.props.username} 
                                 value={this.props.username}
                                 onChange={(event) => this.props.changeUsername(event.target.value)}/>
-                            <TextField 
+                            <TextField
+                                error={this.props.firstNameError.hasError}
+                                helperText={this.props.firstNameError.message}
                                 style={{width: 350, margin: 20}}
                                 inputProps={{style: {textAlign: "center"}}}
                                 id="firstname" 
@@ -31,6 +35,8 @@ class UserInfoForm extends React.Component {
                                 value={this.props.firstname}
                                 onChange={(event) => this.props.changeFirstName(event.target.value)}/>
                             <TextField 
+                                error={this.props.lastNameError.hasError}
+                                helperText={this.props.lastNameError.message}
                                 style={{width: 350, margin: 20}}
                                 inputProps={{style: {textAlign: "center"}}}
                                 id="lastname" 
@@ -39,6 +45,8 @@ class UserInfoForm extends React.Component {
                                 value={this.props.lastname}
                                 onChange={(event) => this.props.changeLastName(event.target.value)}/>
                             <TextField 
+                                error={this.props.passwordError.hasError}
+                                helperText={this.props.passwordError.message}
                                 style={{width: 350, margin: 20}}
                                 inputProps={{style: {textAlign: "center"}}}
                                 id="password" 

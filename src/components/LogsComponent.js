@@ -33,6 +33,10 @@ class LogsComponent extends React.Component {
     }
 
     componentDidMount(){
+        if (this.props.authenticated != true) {
+            this.props.history.push('/')
+        }
+        else {
         axios({
             method : "get",
             url :'https://robotserve.herokuapp.com/api/logs',
@@ -46,6 +50,7 @@ class LogsComponent extends React.Component {
             }).catch( err => {
                 console.log(err)
             });
+        }
     }
 
     render() {
@@ -59,7 +64,7 @@ class LogsComponent extends React.Component {
                 <Box display="flex" flexDirection="column">
                     <Box display="flex" flexDirection="row-reverse">
                         <Link to="/" style={{ textDecoration: 'none' }}>
-                            <Button variant="contained" style={{marginBottom: 20}}>Logout</Button>
+                            <Button variant="contained" style={{marginBottom: 20}}>Logout {this.props.user.username}</Button>
                         </Link>
                     </Box>
                     <Box display="flex" justifyContent="center" alignItems="center">

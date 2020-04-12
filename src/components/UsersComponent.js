@@ -56,7 +56,7 @@ class UsersComponent extends React.Component {
                 <Box display="flex" flexDirection="column">
                     <Box display="flex" flexDirection="row-reverse">
                         <Link to="/" style={{ textDecoration: 'none' }}>
-                            <Button variant="contained" style={{marginBottom: 20}}>Logout {this.props.user.username}</Button>
+                            <Button variant="contained" style={{marginBottom: 20}} onClick={() => this.props.logout()}>Logout {this.props.user.username}</Button>
                         </Link>
                         <Link to="/adduser" style={{ textDecoration: 'none' }}>
                             <Button variant="contained" style={{marginBottom: 20, marginRight: 10}}>Add User</Button>

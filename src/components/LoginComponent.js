@@ -34,7 +34,6 @@ class LoginComponent extends React.Component {
                 message: message
             }
         })
-        console.log(event.target.value)
     }
 
     changePassword(event) {
@@ -51,7 +50,6 @@ class LoginComponent extends React.Component {
                 message: message
             }
         })
-        console.log(event.target.value)
     }
 
     onSubmit(username, password) {
